@@ -17,7 +17,7 @@ request.setCharacterEncoding("UTF-8");
     
     <script src="./js/jquery-3.6.3.min.js"></script>
     <script src="./js/login.js"></script>
-    <title>í¬í</title>
+    <title>로그인</title>
 </head>
 
 <body>
