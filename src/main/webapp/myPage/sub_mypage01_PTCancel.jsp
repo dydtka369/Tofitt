@@ -15,34 +15,7 @@
 </head>
 
 <body>
-    <!-- header 시작 -->
-    <header>
-        <div id="head_inner">
-            <nav>
-                <h1>
-                    <a href="./index.html"> <img src="./images/logo.svg" alt="로고"></a>
-                </h1>
-                <div class="gnb_inner">
-                    <ul>
-                        <li><a href="#">키핏코치</a></li>
-                        <li><a href="#">피트니스</a></li>
-                        <li><a href="#">키핏 쇼핑몰</a></li>
-                        <li><a href="#">키핏 소통</a></li>
-                        <li><a href="#">마이페이지</a></li>
-                        <li><a href="#">이용가이드</a></li>
-                    </ul>
-                </div>
-                <div class="login_btn">
-                    <ul>
-                        <li><a href="#">회원가입</a></li>
-                        <li><a href="#">로그인</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </header>
-    <!-- header 종료 -->
-
+    
     <div id="content">
         <section class="rcCancel_head">
             <h1>PT 예약 취소</h1>
