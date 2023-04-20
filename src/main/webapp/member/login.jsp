@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8" isELIgnored="false"%>
+   pageEncoding="UTF-8" isELIgnored="false" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +22,7 @@
 </head>
 
 <body>
+	<jsp:include page="/commom/header.jsp"></jsp:include>
   <div id="content">
         <div class="login">
             <div class="login_inner">
@@ -31,7 +32,7 @@
                 </h3>
                 <div class="login_btn2">
                     <div class="btn_inner">
-                        <a id="kakao-login-btn" href="../kitlogin.html">
+                        <a id="kakao-login-btn" href="/tofitt/member/kitlogin.jsp">
                             <span>키핏 로그인</span>
                         </a>
                     </div>
@@ -52,7 +53,9 @@
                 </span>
             </div>
         </div>
+        
     </div>
+    <jsp:include page="/commom/footer.jsp"></jsp:include>
     
 
 </body>

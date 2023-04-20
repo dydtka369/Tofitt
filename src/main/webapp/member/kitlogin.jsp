@@ -1,7 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<% 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
 request.setCharacterEncoding("UTF-8");
 %> 
+
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,8 +19,8 @@ request.setCharacterEncoding("UTF-8");
     <link rel="stylesheet" href="../css/kit.css">
     <link rel="stylesheet" href="../css/footer.css">
     
-    <script src="./js/jquery-3.6.3.min.js"></script>
-    <script src="./js/login.js"></script>
+    <script src="../js/jquery-3.6.3.min.js"></script>
+    <script src="../js/login.js"></script>
     <title>로그인</title>
 </head>
 
@@ -25,14 +29,14 @@ request.setCharacterEncoding("UTF-8");
      <div id="content">
         <div class="content_inner">
             <h3>
-                <img src="./images/logo.svg" alt="logo">
+                <img src="../images/logo.svg" alt="logo">
                     <br>
                     들어오셔서 기뻐요!
             </h3>
             <p>
                 키핏 전용 로그인
             </p>
-            <form name="frmLogin">
+            <form name="frmLogin" action="${contextPath}/member/addMember.do" method="post">
             <div class="form">
                 <label class="email">이메일</label>
                 <input id="inpud_id" type="text" class="user_id" name="user_id" placeholder="이메일을 입력해주세요">
@@ -52,7 +56,7 @@ request.setCharacterEncoding("UTF-8");
         </div>
     </form>
     </div>
-    
+    <jsp:include page="/commom/footer.jsp"></jsp:include>
 
 </body>
 

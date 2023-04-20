@@ -24,8 +24,8 @@
                 </div>
                 <div class="login_btn">
                     <ul>
-                        <li><a href="./register.html">회원가입</a></li>
-                        <li><a href="./login.html">로그인</a></li>
+                        <li><a href="/tofitt/member/kitresister.jsp">회원가입</a></li>
+                        <li><a href="/tofitt/member/login.jsp">로그인</a></li>
                     </ul>
                 </div>
             </nav>
