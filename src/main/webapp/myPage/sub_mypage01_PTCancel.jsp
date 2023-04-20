@@ -21,7 +21,7 @@
             <h1>PT 예약 취소</h1>
         </section>
         <section class="rcCancel_body">
-            <h2>※ 예약시간 24시간 전부터 예약취소가 불가합니다.</h2>
+            <h2>sdsdsd</h2>
             <p>
                 <button class="PTReservation_cancel">취소</button>
             </p>
