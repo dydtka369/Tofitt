@@ -1,27 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+isELIgnored="false"%> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+request.setCharacterEncoding("UTF-8");
+%> 
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/header.css">
-    <link rel="stylesheet" href="./css/sub_mypage01_PTCancel.css">
-    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/sub_mypage01_PTCancel.css">
+    <link rel="stylesheet" href="../css/footer.css">
     <script src="./js/jquery-3.6.3.min.js"></script>
     <script src="./js/index.js"></script>
-    <title>투핏</title>
+    <title>í¬í</title>
 </head>
 
 <body>
-    
-    <div id="content">
+    <jsp:include page="/commom/header.jsp"></jsp:include>
+       <div id="content">
         <section class="rcCancel_head">
             <h1>PT 예약 취소</h1>
         </section>
         <section class="rcCancel_body">
-            <h2>sdsdsd</h2>
+            <h2>※ 예약시간 24시간 전부터 예약취소가 불가합니다.</h2>
             <p>
                 <button class="PTReservation_cancel">취소</button>
             </p>
@@ -60,42 +64,8 @@
         
     </div>
 
-    <!-- footer 시작 -->
-    <footer>
-        <div id="footer_top">
-            <div class="footrt_inner">
-                <h2><a href="/index.html"><img src="./images/logo.svg" alt="logo"></a></h2>
-                <ul>
-                    <li><a href="#">키핏 코치</a></li>
-                    <li><a href="#">피트니스</a></li>
-                    <li><a href="#">키핏 쇼핑물</a></li>
-                    <li><a href="#">키핏 소통</a></li>
-                    <li><a href="#">마이페이지</a></li>
-                    <li><a href="#">이용가이드</a></li>
-                </ul>
-            </div>
-        </div>
-        <div id="footer_main">
-            <div class="footer_menu">
-                <ul>
-                    <li><a href="#">© keepfit.co.kr</a></li>
-                    <li><a href="#">이용약관</a></li>
-                    <li><a href="#">개인정보 처리 방침</a></li>
-                    <li><a href="#">고객센터</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer_copy">
-            <span>콘텐츠웨이브 주식회사</span>
-            <span>콘텐츠웨이브 주식회사</span>
-            <span>고객센터 1599-3709 (평일 09:00~18:00 / 점심시간 12:00~13:00 / 주말 및 공휴일 휴무)</span>
-            <br>
-            <span>사업자등록번호 220-88-38020</span>
-            <span>호스팅서비스제공자 : 마이크로소프트 유한회사, 구글클라우드코리아 유한회사, 아마존웹서비시즈코리아 유한회사</span>
-            <br>
-            <address>서울특별시 영등포구 여의나루로 60 포스트타워 19층</address>
-        </div>
-    </footer>
+<jsp:include page="/commom/footer.jsp"></jsp:include>
+  
 
 </body>
 

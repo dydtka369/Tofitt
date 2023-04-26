@@ -32,15 +32,8 @@
                 </h3>
                 <div class="login_btn2">
                     <div class="btn_inner">
-                        <a id="kakao-login-btn" href="/tofitt/member/kitlogin.jsp">
+                        <a id="kakao-login-btn" href="/tofitt/memberInfo/kitlogin.jsp">
                             <span>키핏 로그인</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="login_btn2">
-                    <div class="btn_inner2">
-                        <a href="./coachlogin.html">
-                            <span>코치 로그인</span>
                         </a>
                     </div>
                 </div>

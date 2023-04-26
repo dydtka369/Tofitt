@@ -1,8 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
+<%@page import="java.io.PrintWriter"%>
+<%@page import="tofitt.member.MemberDAO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+import="java.util.*"	%> 
+<%@ page import = "tofitt.member.MemberDAO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <%
 request.setCharacterEncoding("UTF-8");
 %> 
+
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
@@ -36,7 +42,7 @@ request.setCharacterEncoding("UTF-8");
             <p>
                 키핏 전용 로그인
             </p>
-            <form name="frmLogin" action="${contextPath}/member/addMember.do" method="post">
+            <form action="${contextPath}/member/logForm.do" name="frmlogin" method="post">
             <div class="form">
                 <label class="email">이메일</label>
                 <input id="inpud_id" type="text" class="user_id" name="user_id" placeholder="이메일을 입력해주세요">
@@ -51,7 +57,7 @@ request.setCharacterEncoding("UTF-8");
             </div>
               <button type="submit" class="login_button" id="btn_log" onclick="loginCheck()">로그인</button>
             <div class="forget_pw">
-                <a href="./searchpwd.html">비밀번호를 잊으셨나요?</a>
+                <a href="/tofitt/memberInfo/searchpwd.jsp">비밀번호를 잊으셨나요?</a>
         </div>
         </div>
     </form>

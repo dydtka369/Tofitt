@@ -1,6 +1,7 @@
 package tofitt.member;
 
 
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -12,10 +13,21 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+
 public class MemberDAO {
 	   private Connection conn;
 	   private PreparedStatement pstmt;
 	   private DataSource dataFactory;
+	   private ResultSet rs;
+	   private static MemberDAO instance;
+    
+    // 싱글톤 패턴
+
+    public static MemberDAO getInstance(){
+        if(instance==null)
+            instance=new MemberDAO();
+        return instance;
+    }
 	   
 	   public MemberDAO() {
 	      try {
@@ -29,24 +41,55 @@ public class MemberDAO {
 	         e.printStackTrace();
 	      }
 	   }
-	   //회원 등록
+	  //회원목록
+	   public List<MemberVO> listMembers() {
+		   List<MemberVO> memberList = new ArrayList();
+		   try {
+			   conn=dataFactory.getConnection();
+			   String query = "select * from members order by joinDate desc";
+			   pstmt = conn.prepareStatement(query);
+			   ResultSet rs = pstmt.executeQuery();
+			   while(rs.next()) {
+				   String id = rs.getString("id");
+				   String pwd = rs.getString("pwd");
+				   String name = rs.getString("name");
+				   String email = rs.getString("email");
+				   Date joinDate = rs.getDate("joinDate");
+				   MemberVO memberVO = new MemberVO(id, pwd, name, email, joinDate);
+				   memberList.add(memberVO);
+			   }
+			   rs.close();
+			   pstmt.close();
+			   conn.close();
+		   }catch(Exception e) {
+			   System.out.println("DB 조회 중 에러");
+			   e.printStackTrace();
+		   }
+		   return memberList;
+	   }
+
 	   public void addMember(MemberVO memberVO) {
 		   try {
 			   conn = dataFactory.getConnection();
-			   String id = memberVO.getUserId();
-			   String pwd = memberVO.getUserName();
-			   String name = memberVO.getAddress();
-			   String email = memberVO.getNickName();
-			   String phone = memberVO.getPhone();
+			   String id = memberVO.getId();
+			   String pwd = memberVO.getPwd();
+			   String name = memberVO.getName();
+			   String email = memberVO.getEmail();
+			   String admin = memberVO.getAdmin();
 			   String nickName = memberVO.getNickName();
-			   int admin = memberVO.getMEM_ADMIN();
-			   Date birthDay = memberVO.getBirthDay();
-			   String query = "insert into membertbl(id, pwd, name, email)values(?,?,?,?)";
+			   String address = memberVO.getAddress();
+			   String phone = memberVO.getPhone();
+			   String query = "insert into members(id, pwd, name, email,admin,nickName,address,phone)values(?,?,?,?,?,?,?,?)";
 			   pstmt = conn.prepareStatement(query);
 			   pstmt.setString(1, id);
 			   pstmt.setString(2, pwd);
 			   pstmt.setString(3, name);
 			   pstmt.setString(4, email);
+			   pstmt.setString(5, admin);
+			   pstmt.setString(6, nickName);
+			   pstmt.setString(7, address);
+			   pstmt.setString(8, phone);
+			   
 			   pstmt.executeUpdate();
 			   pstmt.close();
 			   conn.close();
@@ -55,6 +98,100 @@ public class MemberDAO {
 			   e.printStackTrace();
 		}
 	   }
+		   public void delMember(String _id) {
+			   try {
+				   conn=dataFactory.getConnection();
+				   String query = "delete from members where id=?";
+				   pstmt=conn.prepareStatement(query);
+				   pstmt.setString(1, _id);
+				   pstmt.executeUpdate();
+				   pstmt.close();
+				   conn.close();
+			   }catch (Exception e) {
+				 System.out.println("회원정보 삭제 중 에러");
+				 e.printStackTrace();
+			}
+		   }//회원가입확인
+			public boolean isExisted(MemberVO memVO) {
+				boolean result=false;
+				String id=memVO.getId();
+				String pwd=memVO.getPwd();
+				try {
+					conn=dataFactory.getConnection();
+					String query="select decode(count(*),1,'true','false') as result from members where id=? and pwd=?";
+					pstmt=conn.prepareStatement(query);
+					pstmt.setString(1, id);
+					pstmt.setString(2, pwd);
+					ResultSet rs=pstmt.executeQuery();
+					rs.next(); 
+					result=Boolean.parseBoolean(rs.getString("result"));
+				} catch (Exception e) {
+					System.out.println("DB 연결 오류");
+					e.printStackTrace();
+				}
+				return result;
+			}
+			public void loginCheck(MemberVO memberVO) {
+				try {
+					conn = dataFactory.getConnection();
+					String email = memberVO.getEmail();
+					String  query = "SELECT * FROM members WHERE email = ? "; 
+					pstmt = conn.prepareStatement(query);
+					pstmt.setString(1, email);
+				}catch (Exception e) {
+					System.out.println("비밀번호 찾기 중 오류");
+					e.printStackTrace();
+				}
+			}
+			   //수정할 회원정보 찾기
+			   public MemberVO findMember(String _id) {
+				   MemberVO memFindInfo = null;
+				   try {
+					   conn = dataFactory.getConnection();
+					   String query = "select * from membertbl where id=?";
+					   pstmt = conn.prepareStatement(query);
+					   pstmt.setString(1, _id);
+					   ResultSet rs = pstmt.executeQuery();
+					   rs.next();
+					   String id = rs.getString("id");
+					   String pwd = rs.getString("pwd");
+					   String name = rs.getString("name");
+					   String email = rs.getString("email");
+					   Date joinDate = rs.getDate("joinDate");
+					   memFindInfo = new MemberVO(id, pwd, name, email, joinDate);
+					   pstmt.close();
+					   conn.close();
+					   rs.close();
+				   }catch (Exception e) {
+					 System.out.println("수정할 자료 찾는 중 에러");
+					 e.printStackTrace();
+				}
+				   return memFindInfo;
+			   }
+			   //회원정보 수정
+			   public void modMember(MemberVO memberVO) {
+				   String id = memberVO.getId();
+				   String pwd = memberVO.getPwd();
+				   String name = memberVO.getName();
+				   String email = memberVO.getEmail();
+				   try {
+					   conn = dataFactory.getConnection();
+					   String query = "update membertbl set pwd=?, name=?, email=? where id=?";
+					   pstmt = conn.prepareStatement(query);
+					   pstmt.setString(1, pwd);
+					   pstmt.setString(2, name);
+					   pstmt.setString(3, email);
+					   pstmt.setString(4, id);
+					   pstmt.executeUpdate();
+					   pstmt.close();
+					   conn.close();
+				   }catch (Exception e) {
+					   System.out.println("회원정보 수정중 에러");
+					   e.printStackTrace();
+				}
+			   }
+
+		}
 
 
-}
+

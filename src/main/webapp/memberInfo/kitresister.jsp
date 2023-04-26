@@ -20,7 +20,7 @@ request.setCharacterEncoding("UTF-8");
     <script src="../js/jquery-3.6.3.min.js"></script>
     <script src="../js/kitresister.js"></script>
     <script src="../js/index.js"></script>
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="/t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
         function sample6_execDaumPostcode() {
             new daum.Postcode({
@@ -83,8 +83,8 @@ request.setCharacterEncoding("UTF-8");
                     <form action="${contextPath}/member/addMember.do" method="post">
                         <fieldset>
                             <div>
-                            <label><input type="radio" name="color" value="0"> 일반회원</label>
-                            <label><input type="radio" name="color" value="1"> 코치회원</label>
+                           <input type="radio" name="admin" value="일반"> 일반회원
+                           <input type="radio" name="admin" value="코치"> 코치회원
                         </div>
                         <div>
                             <label for="id"></label> <input type="text" id="id"
@@ -108,16 +108,16 @@ request.setCharacterEncoding("UTF-8");
                             
                             <div>
                                 <label for="email"></label> <input type="email" id="email"
-                                    name="lastname" placeholder="이메일 ( ex@codepen.com)" onchange="ck_email()"> 
+                                    name="email" placeholder="이메일 ( ex@codepen.com)" onchange="ck_email()"> 
                                 <span id="MsgId" class="none">이메일</span>
                             </div>
                             <div>
                                 <label for="nick"></label> <input type="text" id="nick"
-                                    name="lastname" placeholder="닉네임"> 
+                                    name="nickName" placeholder="닉네임"> 
                             </div>
                             <div>
                                 <label for="phone"></label> <input type="tel" id="phone"
-                                    name="lastname" placeholder="전화번호"> 
+                                    name="phone" placeholder="전화번호"> 
                             </div>
                             <div>
                                 <label for="bithdate">생년월일</label>
@@ -126,16 +126,9 @@ request.setCharacterEncoding("UTF-8");
                             <div class="address">
                                 <label for="bithdate">주소</label>
                                 <input type="text" id="sample6_postcode" placeholder="우편번호">
-                                <input type="text" id="sample6_address" placeholder="주소"><br>
+                                <input type="text" id="sample6_address" name="address" placeholder="주소"><br>
                                 <input type="text" id="sample6_detailAddress" placeholder="상세주소">
                                 <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-                            </div>
-                            <div> 
-                                <select id="country" name="country">
-                                    <option value="australia">20대</option>
-                                    <option value="canada">30대</option>
-                                    <option value="usa">40대</option>
-                                </select> 
                             </div>
     
                             <input type="submit" value="회원가입">
@@ -146,8 +139,6 @@ request.setCharacterEncoding("UTF-8");
     </div>
   </div>
   <jsp:include page="/commom/footer.jsp"></jsp:include>
-    
-    
 </body>
 
 </html>
